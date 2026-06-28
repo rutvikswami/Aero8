@@ -45,7 +45,7 @@ export default function Navbar() {
 
           <div className="nav-links">
             {visibleLinks.map(link => (
-              <Link key={link.id} href={link.href} className="nav-link">
+              <Link key={link.id} href={link.id === 'kits' ? '/kits/kit-01' : link.href} className="nav-link">
                 {link.label}
               </Link>
             ))}
@@ -87,7 +87,7 @@ export default function Navbar() {
         {visibleLinks.map(link => (
           <Link
             key={link.id}
-            href={link.href}
+            href={link.id === 'kits' ? '/kits/kit-01' : link.href}
             className="nav-mobile-link"
             onClick={() => setMenuOpen(false)}
           >

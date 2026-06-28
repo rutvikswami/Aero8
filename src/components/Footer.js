@@ -9,7 +9,7 @@ export default function Footer() {
   const quickLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/#about' },
-    { label: 'Kits', href: '/#kits' },
+    { label: 'Kits', href: '/kits/kit-01' },
     { label: 'Workshop', href: '/workshop' },
     { label: 'Courses', href: '/courses' },
     { label: 'Store', href: '/store' },

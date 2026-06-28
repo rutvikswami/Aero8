@@ -4,7 +4,7 @@
 export const defaultNavLinks = [
   { id: 'home', label: 'Home', href: '/#home', visible: true },
   { id: 'about', label: 'About', href: '/#about', visible: true },
-  { id: 'kits', label: 'Kits', href: '/#kits', visible: true },
+  { id: 'kits', label: 'Kits', href: '/kits/kit-01', visible: true },
   { id: 'workshop', label: 'Workshop', href: '/workshop', visible: true },
   { id: 'courses', label: 'Courses', href: '/courses', visible: true },
   { id: 'store', label: 'Store', href: '/store', visible: true },
@@ -20,7 +20,7 @@ export const defaultHero = {
   subtext: 'A student-led robotics startup from Bangalore, building hands-on robotics kits, immersive workshops, and a storybook universe that makes engineering unforgettable.',
   ctaButton: 'Book Workshop',
   ctaPrimary: { label: 'Book a Workshop', href: '/workshop' },
-  ctaSecondary: { label: 'Explore Kits', href: '/#kits' },
+  ctaSecondary: { label: 'Explore Kits', href: '/kits/kit-01' },
   ctaTertiary: { label: '▶ Watch Teaser', href: '#teaser' },
   countdownEnabled: true,
   countdownTarget: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString(),
