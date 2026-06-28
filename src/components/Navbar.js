@@ -1,10 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useData } from '@/context/DataContext';
 import { useAuth } from '@/context/AuthContext';
 
 export default function Navbar() {
+  const pathname = usePathname();
   const { navLinks, hero } = useData();
   const { student, setShowAuthModal, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
@@ -24,14 +26,21 @@ export default function Navbar() {
 
   const visibleLinks = navLinks.filter(l => l.visible);
 
+  // Determine navbar narrowing layout class
+  let layoutClass = '';
+  if (pathname === '/') {
+    layoutClass = 'nav-home-layout';
+  } else if (pathname && pathname.startsWith('/kits/')) {
+    layoutClass = 'nav-kit-layout';
+  }
+
   return (
     <>
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${layoutClass}`}>
         <div className="navbar-inner">
           <Link href="/" className="nav-brand">
-            <span className="nav-brand-name">AERO8</span>
-            <span className="nav-brand-sub">ROBOTICS</span>
+            <span className="nav-brand-name-dashboard">AERO8</span>
           </Link>
 
           <div className="nav-links">
@@ -45,10 +54,10 @@ export default function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             {student ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <Link href="/dashboard" className="nav-link" style={{ fontSize: '12px' }}>
+                <Link href="/dashboard" className="nav-link" style={{ fontSize: '11px' }}>
                   {student.name?.split(' ')[0] || 'Dashboard'}
                 </Link>
-                <button onClick={logout} className="nav-link" style={{ fontSize: '12px', cursor: 'pointer' }}>
+                <button onClick={logout} className="nav-link" style={{ fontSize: '11px', cursor: 'pointer' }}>
                   Logout
                 </button>
               </div>
@@ -56,13 +65,13 @@ export default function Navbar() {
               <button
                 onClick={() => setShowAuthModal(true)}
                 className="nav-link"
-                style={{ fontSize: '12px', cursor: 'pointer' }}
+                style={{ fontSize: '11px', cursor: 'pointer' }}
               >
                 Login
               </button>
             )}
-            <Link href="/workshop" className="nav-cta">
-              {hero.ctaButton || 'Book Workshop'}
+            <Link href="/workshop" className="nav-cta-dashboard">
+              BOOK A KIT <span style={{ marginLeft: '4px' }}>→</span>
             </Link>
             <div
               className={`nav-hamburger ${menuOpen ? 'open' : ''}`}
